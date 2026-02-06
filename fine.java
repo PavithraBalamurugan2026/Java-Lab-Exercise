@@ -22,11 +22,9 @@ System.out.println("3.Casual leave Taken");
 System.out.println("4.Not Returning Library Book");
 System.out.println("5.Breakage of Lab item");
 System.out.print("Enter your choice:");
-
 choice = s.nextInt();
 switch(choice)
 {
-
 case 1:
 fine = attempt*150;
 System.out.println("The total fine amount for not wearing ID:"+fine);
@@ -60,4 +58,5 @@ break;
 }while(choice<=5);
 }
 }
+
 
