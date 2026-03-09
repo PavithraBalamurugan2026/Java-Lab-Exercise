@@ -1,0 +1,51 @@
+import java.util.Scanner;
+public class bill
+{
+public static void main(String args[])
+{
+Scanner b = new Scanner(System.in);
+System.out.print("Enter your name:");
+String name =b.nextLine();
+System.out.print("Enter your previous reading:");
+int prev = b.nextInt();
+System.out.print("Enter your current reading:");
+int cur =b.nextInt();
+int unit = cur - prev;
+System.out.println("Enter your unit:"+unit);
+System.out.print("Enter Your Choice:");
+int choice =b.nextInt();
+double cost =0;
+switch(choice)
+{
+case 1:
+System.out.println("Domestic Customer");
+if(unit<=100)
+{
+cost = 4.80*unit;
+System.out.println("Your Elictricity bill is (Rs.):"+cost);
+}
+else if(unit>=101 && unit<=200)
+{
+cost = 5.80*unit;
+System.out.println("Your Elictricity bill is (Rs.):"+cost);
+}
+else
+{
+cost = 6.50*unit;
+System.out.print("Your Electricity bill is (Rs.):"+cost);
+}
+break;
+case 2:
+System.out.println("Non-Domestic Customer");
+if(unit<100)
+{
+cost = 6.05*unit;
+}
+break;
+default:
+System.out.println("Enter valid choice");
+break;
+}
+}
+}
+
