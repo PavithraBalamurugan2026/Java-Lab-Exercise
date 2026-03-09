@@ -1,0 +1,121 @@
+import java.util.Scanner;
+public class Stack {
+int arr[];
+int top;
+int size;
+Stack() {
+size = 5;
+arr = new int[size];
+top = -1;
+}
+Stack(int s) {
+size = s;
+arr = new int[size];
+top = -1;
+}
+Stack(Stack existing) {
+this.size = existing.size;
+this.top = existing.top;
+this.arr = new int[this.size];
+for (int i = 0; i <= top; i++) {
+this.arr[i] = existing.arr[i];
+}
+}
+void push(int x) {
+if (top == size - 1) {
+System.out.println("Stack Overflow!");
+} else {
+arr[++top] = x;
+System.out.println(x + " pushed.");
+}
+}
+void pop() {
+if (top == -1) {
+System.out.println("Stack Underflow!");
+} else {
+System.out.println("Popped: " + arr[top--]);
+}
+}
+void show() {
+if (top == -1) {
+System.out.println("Stack is empty.");
+} 
+else {
+System.out.println("Stack contents:");
+for (int i = top; i >= 0; i--) {
+System.out.println(arr[i]);
+}
+}
+}
+void search(int x) {
+boolean found = false;
+for (int i = 0; i <= top; i++) {
+if (arr[i] == x) {
+System.out.println("Found at index: " + i);
+found = true;
+break;
+}
+}
+if (!found) System.out.println("Not found.");
+}
+void sort() {
+for (int i = 0; i <= top; i++) {
+for (int j = i + 1; j <= top; j++) {
+if (arr[i] > arr[j]) {
+int temp = arr[i];
+arr[i] = arr[j];
+arr[j] = temp;
+}
+}
+}
+System.out.println("Sorted successfully.");
+}
+public static void main(String args[]) {
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter stack size: ");
+int n = sc.nextInt();
+Stack s1 = new Stack(n);
+int choice;
+System.out.println("\n1.Push");
+System.out.println("\n2.Pop");
+System.out.println("\n3.Show");
+System.out.println("\n4.Search");
+System.out.println("\n5.Sort");
+System.out.println("\n6.Backup(Copy)");
+do {
+System.out.print("Enter your choice: ");
+choice = sc.nextInt();
+switch (choice) {
+case 1:
+System.out.print("Value: ");
+s1.push(sc.nextInt());
+break;
+case 2:
+s1.pop();
+break;
+case 3:
+s1.show();
+break;
+case 4:
+System.out.print("Search for: ");
+s1.search(sc.nextInt());
+break;
+case 5:
+s1.sort();
+break;
+case 6:
+Stack backup = new Stack(s1);
+System.out.println("Backup created from current stack!");
+backup.show();
+break;
+default:
+System.out.println("Invalid!Exiting");
+choice = 6;
+break;
+}
+} while (choice != 6);
+sc.close();
+}
+}
+
+
