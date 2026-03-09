@@ -1,0 +1,75 @@
+import java.util.Scanner;
+class Matrix {
+private int rows, cols;
+private int[][] data;
+public Matrix(int r, int c) {
+this.rows = r;
+this.cols = c;
+this.data = new int[r][c];
+}
+public void input(Scanner sc) {
+for (int i = 0; i < rows; i++) {
+for (int j = 0; j < cols; j++) {
+data[i][j] = sc.nextInt();
+}
+}
+}
+public Matrix negate() {
+Matrix result = new Matrix(rows, cols);
+for (int i = 0; i < rows; i++)
+for (int j = 0; j < cols; j++)
+result.data[i][j] = -this.data[i][j];
+return result;
+}
+public Matrix add(Matrix other) {
+Matrix result = new Matrix(rows, cols);
+for (int i = 0; i < rows; i++)
+for (int j = 0; j < cols; j++)
+result.data[i][j] = this.data[i][j] + other.data[i][j];
+return result;
+}
+public Matrix subtract(Matrix other) {
+Matrix result = new Matrix(rows, cols);
+for (int i = 0; i < rows; i++)
+for (int j = 0; j < cols; j++)
+result.data[i][j] = this.data[i][j] - other.data[i][j];
+return result;
+}
+public Matrix multiply(Matrix other) {
+Matrix result = new Matrix(this.rows, other.cols);
+for (int i = 0; i < this.rows; i++) {
+for (int j = 0; j < other.cols; j++) {
+for (int k = 0; k < this.cols; k++) {
+result.data[i][j] += this.data[i][k] * other.data[k][j];
+}
+}
+}
+return result;
+}
+public void display() {
+for (int i = 0; i < rows; i++) {
+for (int j = 0; j < cols; j++) {
+System.out.print(data[i][j] + "\t");
+}
+System.out.println();
+}
+}
+}
+public class MatrixEvaluator {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+int size = 2;
+Matrix A = new Matrix(size, size);
+Matrix B = new Matrix(size, size);
+System.out.println("Enter 4 values for Matrix A:");
+A.input(sc);
+System.out.println("Enter 4 values for Matrix B:");
+B.input(sc);
+Matrix R = A.negate().add(B).subtract(A.multiply(B));
+System.out.println("\nResultant Matrix R:");
+R.display();
+sc.close();
+}
+}
+
+
